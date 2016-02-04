@@ -18,6 +18,7 @@
     });
     socket.on('chat message', function(msg){
       $('#messages').append($('<li>').html('<label>'+msg.name+':</label> '+msg.message));
+      $('#messages').scrollTop($("#messages")[0].scrollHeight);
     });
   });
 })();
