@@ -3,6 +3,7 @@
   $('#name-form').submit(function(e){
     e.preventDefault();
     $(this).hide();
+    $('#chat-form').show();
     var name = $('#name').val();
     var socket = io();
     $('#m').focus();
