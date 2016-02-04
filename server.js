@@ -10,7 +10,16 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function(socket){
+  var name = socket.handshake.query.name;
+
+  socket.broadcast.emit('joined', name);
+
+  socket.on('disconnect', function(){
+    socket.broadcast.emit('left', name);
+  });
+
   socket.on('chat message', function(msg){
+    msg.name = name;
     io.emit('chat message', msg);
   });
 });

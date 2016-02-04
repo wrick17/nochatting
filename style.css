@@ -15,7 +15,6 @@ body {
 h1 {
   font-size: 30px;
   padding: 10px;
-  margin-bottom: 10px;
   border-bottom: 1px solid black;
 }
 
@@ -52,6 +51,18 @@ form button {
 
 #messages li {
   padding: 5px 10px;
+}
+
+#messages li.notification {
+  text-align: center;
+  margin: auto;
+  background: #eee;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+#messages li.notification label{
+  font-size: 12px;
 }
 
 #messages li label {
