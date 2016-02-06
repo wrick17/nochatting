@@ -2,7 +2,6 @@ var webpack = require('webpack');
 
 var webpackConfig = {
   output: {
-    path: '/public/',
     filename: 'bundle.js'
   },
   module: {
