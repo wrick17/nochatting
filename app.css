@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+*:focus,
+*:hover,
+*:active {
+  outline: 0 !important;
+}
+::selection {
+  background: #EF5350;
+  color: #FFFFFF;
+}
+::-moz-selection {
+  background: #EF5350;
+  color: #FFFFFF;
+}
+body {
+  font-family: verdana;
+  margin: 0;
+  background: #FFFFFF;
+  color: #000;
+  overflow: hidden;
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin-top: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+a:hover {
+  border-bottom: 1px solid;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+}

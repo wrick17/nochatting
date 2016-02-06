@@ -1,15 +1,56 @@
 {
-  "name": "socket-chat",
+  "name": "nochatting",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A simple chat app with redux",
+  "main": "webpack.config.js",
   "scripts": {
+    "start": "node server.js",
+    "nodemon": "nodemon server.js",
+    "webpack": "webpack --progress -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-2": "^6.3.13",
+    "babel-register": "^6.4.3",
+    "ejs": "^2.4.1",
     "express": "^4.13.4",
-    "socket.io": "^1.4.5"
+    "history": "^1.17.0",
+    "material-ui": "^0.14.4",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "react-emoji": "^0.4.1",
+    "react-redux": "^4.4.0",
+    "react-router": "^1.0.3",
+    "react-tap-event-plugin": "^0.2.2",
+    "redux": "^3.3.0",
+    "socket.io": "^1.4.5",
+    "socket.io-client": "^1.4.5",
+    "superagent": "^1.7.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.1",
+    "gulp": "^3.9.0",
+    "gulp-less": "^3.0.5",
+    "gulp-nodemon": "^2.0.6",
+    "gulp-notify": "^2.2.0",
+    "gulp-watch": "^4.3.5",
+    "gulp-webpack": "^1.5.0",
+    "webpack": "^1.12.12"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react",
+      "stage-2"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
   }
 }

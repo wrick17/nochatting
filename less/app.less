@@ -1,0 +1,25 @@
+@import "common.less";
+
+.app .chat-room {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .messages {
+    flex: 1;
+    overflow: auto;
+  }
+  .message-input {
+    display: flex;
+    padding: 10px 10px 0;
+    background: #eee;
+    .message-input-box {
+      flex: 1;
+      margin-right: 10px;
+    }
+  }
+}
+.name-dialog {
+  .name-box {
+    min-width: 100%;
+  }
+}
