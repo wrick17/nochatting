@@ -56,12 +56,36 @@ a:hover {
 }
 .app .chat-room .message-input {
   display: flex;
-  padding: 10px 10px 0;
-  background: #eee;
+  flex-direction: column;
+  padding: 10px 0 0;
+}
+.app .chat-room .message-input > span {
+  display: block;
+  height: 200px;
+  overflow: auto;
+  border: 1px solid #e3e3e3;
+  padding: 10px;
+  margin: 0 10px 5px;
+}
+.app .chat-room .message-input > span .emoji-picker-emoji {
+  padding: 5px;
+}
+.app .chat-room .message-input > span .emoji-picker-emoji:hover {
+  border-bottom: none;
+}
+.app .chat-room .message-input > span span:first-child {
+  border-bottom: 1px solid #e3e3e3;
+  display: block;
+  margin-bottom: 5px;
+}
+.app .chat-room .message-input > span span:last-child {
+  display: none;
 }
 .app .chat-room .message-input .message-input-box {
+  display: flex;
+  flex-direction: row;
   flex: 1;
-  margin-right: 10px;
+  margin: 0 10px;
 }
 .name-dialog .name-box {
   min-width: 100%;

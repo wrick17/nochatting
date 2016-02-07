@@ -10,11 +10,35 @@
   }
   .message-input {
     display: flex;
-    padding: 10px 10px 0;
-    background: #eee;
+    flex-direction: column;
+    padding: 10px 0 0;
+    & > span {
+      display: block;
+      height: 200px;
+      overflow: auto;
+      border: 1px solid @light-gray;
+      padding: 10px;
+      margin: 0 10px 5px;
+      .emoji-picker-emoji {
+        padding: 5px;
+        &:hover {
+          border-bottom: none;
+        }
+      }
+      span:first-child {
+        border-bottom: 1px solid @light-gray;
+        display: block;
+        margin-bottom: 5px;
+      }
+      span:last-child {
+        display: none;
+      }
+    }
     .message-input-box {
+      display: flex;
+      flex-direction: row;
       flex: 1;
-      margin-right: 10px;
+      margin: 0 10px;
     }
   }
 }
