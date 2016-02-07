@@ -35,10 +35,13 @@ class ChatRoom extends React.Component {
         that.props.dispatch(addNewJoinee(name));
       });
 
-      socket.on('chats', function(chats, msg){
+      socket.on('chats', function(chats) {
+        that.props.dispatch(updateChats(chats));
+      });
+
+      socket.on('new message', function(msg) {
         if (msg && msg.name !== localStorage.getItem('name'))
           notification();
-        that.props.dispatch(updateChats(chats));
       });
     }
   }
