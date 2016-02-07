@@ -41,7 +41,7 @@ class ChatRoom extends React.Component {
 
       socket.on('new message', function(msg) {
         if (msg && msg.name !== localStorage.getItem('name'))
-          notification();
+          notification(msg);
       });
     }
   }
