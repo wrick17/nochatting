@@ -51,7 +51,7 @@ class ChatRoom extends React.Component {
   }
 
   editUserName() {
-    this.refs.nameEntryBox.handleOpen();
+    this.refs.nameEntryBox.getWrappedInstance().handleOpen();
   }
 
   modalClosed() {
@@ -70,20 +70,21 @@ class ChatRoom extends React.Component {
     socket.emit('user created', name);
   }
 
+  userUpdated(oldName) {
+    var name = localStorage.getItem('name');
+    socket.emit('user updated', name, oldName);
+  }
+
   render() {
     return (
       <div className="chat-room">
         <Header editUserName={this.editUserName} />
-        <MessageList chats={this.props.chats} self={localStorage.getItem('name')} />
+        <MessageList />
         <MessageInput ref="messageInput" sendMessage={this.sendMessage} />
-        <NameDialog users={this.props.users} ref="nameEntryBox" userCreated={this.userCreated} modalClosed={this.modalClosed} />
+        <NameDialog ref="nameEntryBox" userCreated={this.userCreated} userUpdated={this.userUpdated} modalClosed={this.modalClosed} />
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return { chats: state.chats, users: state.users }
-}
-
-export default connect(mapStateToProps)(ChatRoom);
+export default connect()(ChatRoom);

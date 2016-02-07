@@ -3,10 +3,11 @@ import Dialog from 'material-ui/lib/dialog';
 import FlatButton from 'material-ui/lib/flat-button';
 import RaisedButton from 'material-ui/lib/raised-button';
 import TextField from 'material-ui/lib/text-field';
+import { connect } from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-export default class NameDialog extends React.Component {
+class NameDialog extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,12 +53,15 @@ export default class NameDialog extends React.Component {
         error: 'This name is already taken'
       });
     else {
-      localStorage.setItem('name', name);
-      this.props.userCreated();
       this.setState({
         name: name
       });
       this.handleClose();
+      var oldName = localStorage.getItem('name');
+      localStorage.setItem('name', name);
+      if (oldName)
+        return this.props.userUpdated(oldName);
+      return this.props.userCreated();
     }
   }
 
@@ -92,3 +96,9 @@ export default class NameDialog extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return { users: state.users }
+}
+
+export default connect(mapStateToProps, null, null, { withRef: true })(NameDialog);

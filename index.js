@@ -28,6 +28,14 @@ function removeUser (name) {
   }
 }
 
+function updateUser (name, oldName) {
+  return {
+    type: 'UPDATE_USER',
+    name: name,
+    oldName: oldName
+  }
+}
+
 function addChat (msg) {
   return {
     type: 'ADD_CHAT',
@@ -51,6 +59,14 @@ function itemReducer( state = initialState, action ) {
         users: [
           ...state.users.slice(0, state.users.indexOf(action.name)),
           ...state.users.slice(state.users.indexOf(action.name) + 1),
+        ]
+      });
+    case 'UPDATE_USER':
+      return Object.assign({}, state, {
+        users: [
+          ...state.users.slice(0, state.users.indexOf(action.oldName)),
+          action.name,
+          ...state.users.slice(state.users.indexOf(action.oldName) + 1),
         ]
       });
     case 'ADD_CHAT':
@@ -109,6 +125,10 @@ io.on('connection', function(socket){
         message: userName + ' has left the chat'
       }));
     }
+  });
+
+  socket.on('user updated', function(name, oldName){
+    store.dispatch(updateUser(name, oldName));
   });
 
   socket.on('chat message', function(msg){

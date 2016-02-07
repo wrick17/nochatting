@@ -3,8 +3,9 @@ import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import Avatar from 'material-ui/lib/avatar';
 import ReactEmoji from 'react-emoji';
+import { connect } from 'react-redux';
 
-export default class MessageList extends React.Component {
+class MessageList extends React.Component {
 
   componentDidUpdate() {
     let messages = this.refs.messages;
@@ -13,11 +14,12 @@ export default class MessageList extends React.Component {
 
   render() {
     var that = this;
+    var self = localStorage.getItem('name');
     var messagesList = this.props.chats.map( function(chat) {
       let avatar = "https://robohash.org/" + chat.name;
       if (chat.name === 'system') {
-        if (chat.message.includes(that.props.self))
-          chat.message = chat.message.replace(that.props.self + ' has', 'You have');
+        if (chat.message.includes(self))
+          chat.message = chat.message.replace(self + ' has', 'You have');
         return(
           <ListItem
             key={chat.id}
@@ -32,7 +34,7 @@ export default class MessageList extends React.Component {
           />
         );
       }
-      if (that.props.self === chat.name) {
+      if (self === chat.name) {
         return(
           <ListItem
             rightAvatar={<Avatar src={avatar} style={{ top: '10px' }} />}
@@ -74,3 +76,9 @@ export default class MessageList extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return { chats: state.chats }
+}
+
+export default connect(mapStateToProps)(MessageList);
