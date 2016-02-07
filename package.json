@@ -19,6 +19,7 @@
     "compression": "^1.6.1",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
+    "express-sslify": "^1.0.1",
     "history": "^1.17.0",
     "material-ui": "^0.14.4",
     "react": "^0.14.6",
