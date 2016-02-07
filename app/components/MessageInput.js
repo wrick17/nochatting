@@ -42,7 +42,8 @@ export default class MessageInput extends React.Component {
     if (this.state.message !== '') {
       this.props.sendMessage(this.state.message);
       this.setState({
-        message: ''
+        message: '',
+        emojiPickerOpen: false
       });
     }
   }
