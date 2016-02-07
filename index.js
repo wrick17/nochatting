@@ -4,6 +4,8 @@ var http = require('http').Server(app);
 var path = require('path');
 var io = require('socket.io')(http);
 var compression = require('compression');
+var enforce = require('express-sslify');
+
 import { createStore } from 'redux';
 
 app.use(compression());
