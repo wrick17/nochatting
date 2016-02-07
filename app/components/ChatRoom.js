@@ -3,6 +3,7 @@ import Header from './Header';
 import MessageInput from './MessageInput';
 import MessageList from './MessageList';
 import NameDialog from './NameDialog';
+import notification from './Notification';
 import { connect } from 'react-redux';
 import { updateChats, updateUsers, addNewJoinee } from '../actions';
 import io from 'socket.io-client';
@@ -34,7 +35,9 @@ class ChatRoom extends React.Component {
         that.props.dispatch(addNewJoinee(name));
       });
 
-      socket.on('chats', function(chats){
+      socket.on('chats', function(chats, msg){
+        if (msg && msg.name !== localStorage.getItem('name'))
+          notification();
         that.props.dispatch(updateChats(chats));
       });
     }

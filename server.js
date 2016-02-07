@@ -49,7 +49,7 @@ io.on('connection', function(socket){
   socket.on('chat message', function(msg){
     msg.id = chats.length;
     chats.push(msg);
-    io.emit('chats', chats);
+    io.emit('chats', chats, msg);
   });
 });
 
