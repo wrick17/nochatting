@@ -5,8 +5,6 @@ var webpack    = require('gulp-webpack');
 var notify     = require("gulp-notify");
 var nodemon    = require("gulp-nodemon");
 var uglify     = require('gulp-uglify');
-var gzip       = require('gulp-gzip');
-
 
 /* Task to compile less */
 gulp.task('compile-less', function() {
@@ -27,7 +25,6 @@ gulp.task('webpack-prod', function() {
   return gulp.src('app/index.jsx')
     .pipe(webpack(require('./webpack.config.js')))
     .pipe(uglify())
-    .pipe(gzip())
     .pipe(gulp.dest('./public'));
 });
 
