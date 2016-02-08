@@ -14,12 +14,14 @@ class MessageList extends React.Component {
 
   render() {
     var that = this;
-    var self = localStorage.getItem('name');
+    var me = localStorage.getItem('name');
     var messagesList = this.props.chats.map( function(chat) {
       let avatar = 'http://api.adorable.io/avatars/64/' + chat.name + '.png';
       if (chat.name === 'system') {
-        if (chat.message.includes(self))
-          chat.message = chat.message.replace(self + ' has', 'You have');
+        if (chat.message.includes(me))
+          chat.message = chat.message.replace(me, 'You').replace('has', 'have').replace('is', 'are');
+        if (chat.message.includes('are now You'))
+          chat.message = 'You are now ' + me;
         return(
           <ListItem
             key={chat.id}
@@ -34,7 +36,7 @@ class MessageList extends React.Component {
           />
         );
       }
-      if (self === chat.name) {
+      if (me === chat.name) {
         return(
           <ListItem
             rightAvatar={<Avatar src={avatar} style={{ top: '10px' }} />}

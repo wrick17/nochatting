@@ -50,6 +50,10 @@ class ChatRoom extends React.Component {
     this.makeConnection();
   }
 
+  componentDidMount() {
+    this.refs.messageInput.focus();
+  }
+
   editUserName() {
     this.refs.nameEntryBox.getWrappedInstance().handleOpen();
   }

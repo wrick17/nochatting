@@ -23,7 +23,7 @@ export default class MessageInput extends React.Component {
   }
 
   focus() {
-    this.refs.message.focus();
+    this.message.focus();
   }
 
   componentDidUpdate() {
@@ -31,20 +31,18 @@ export default class MessageInput extends React.Component {
   }
 
   setMessage(e) {
-    this.setState({
-      message: e.target.value,
-      emojiPickerOpen: false
-    });
+    if (e.target.value !== '')
+      return this.setState({
+        message: e.target.value
+      });
   }
 
   submitMessage(e) {
     e.preventDefault();
-    if (this.state.message !== '') {
-      this.props.sendMessage(this.state.message);
-      this.setState({
-        message: '',
-        emojiPickerOpen: false
-      });
+    if (this.message && this.message.getValue() !== '') {
+      this.props.sendMessage(this.message.getValue());
+      this.closeEmojiPicker();
+      this.message.refs.input.value = '';
     }
   }
   toggleEmojiPicker() {
@@ -60,22 +58,21 @@ export default class MessageInput extends React.Component {
   }
 
   setEmoji(emoji) {
-    this.setState({
-      message: this.state.message + ' ' + emoji
-    });
-    this.refs.message.focus();
+    console.log(emoji);
+    this.message.refs.input.value = this.message.getValue() + ' ' + emoji + ' ';
   }
 
   render() {
     let iconStyles = {
       margin: '13px 0 0'
     }
+    console.log('render');
     return (
       <form className="message-input" onSubmit={this.submitMessage} >
         { this.state.emojiPickerOpen ? <EmojiPicker onSelect={this.setEmoji} /> : null}
         <div className="message-input-box">
           <FontIcon className="material-icons" style={iconStyles} color={Colors.cyan500} onTouchTap={this.toggleEmojiPicker} >mood</FontIcon>
-          <TextField ref="message" hintText="Enter your messge here" autoComplete="off" onClick={this.closeEmojiPicker} value={this.state.message} onChange={this.setMessage} className="message-input-box" required={true} />
+          <TextField ref={(ref) => this.message = ref} hintText="Enter your messge here" autoComplete="off" onClick={this.closeEmojiPicker} onBlur={this.setMessage} className="message-input-box" required={true} />
           <FontIcon className="material-icons" style={iconStyles} color={Colors.cyan500} onTouchTap={this.submitMessage} >send</FontIcon>
         </div>
       </form>

@@ -90,3 +90,6 @@ a:hover {
 .name-dialog .name-box {
   min-width: 100%;
 }
+.material-icons {
+  cursor: pointer;
+}

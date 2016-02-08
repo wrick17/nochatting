@@ -130,6 +130,12 @@ io.on('connection', function(socket){
 
   socket.on('user updated', function(name, oldName){
     store.dispatch(updateUser(name, oldName));
+    let id = store.getState().chats.length;
+    store.dispatch(addChat({
+      id: id,
+      name: 'system',
+      message: oldName + ' is now ' + name
+    }));
   });
 
   socket.on('chat message', function(msg){
