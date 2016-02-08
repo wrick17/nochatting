@@ -16,7 +16,7 @@ class MessageList extends React.Component {
     var that = this;
     var self = localStorage.getItem('name');
     var messagesList = this.props.chats.map( function(chat) {
-      let avatar = "https://robohash.org/" + chat.name;
+      let avatar = 'http://api.adorable.io/avatars/64/' + chat.name + '.png';
       if (chat.name === 'system') {
         if (chat.message.includes(self))
           chat.message = chat.message.replace(self + ' has', 'You have');
