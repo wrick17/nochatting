@@ -98,13 +98,22 @@ io.on('connection', function(socket){
 
   io.emit('users', store.getState().users);
 
-  store.subscribe(() => {
-    io.emit('chats', store.getState().chats);
-  });
+  let currentState = store.getState();
 
-  store.subscribe(() => {
-    io.emit('users', store.getState().users);
-  });
+  function handleChange() {
+    let previousState = currentState;
+    currentState = store.getState();
+
+    if (previousState.users !== currentState.users) {
+      io.emit('users', currentState.users);
+    }
+
+    if (previousState.chats !== currentState.chats) {
+      io.emit('chats', currentState.chats);
+    }
+  }
+
+  store.subscribe(handleChange);
 
   socket.on('user created', function(name){
     userName = name;
@@ -140,12 +149,12 @@ io.on('connection', function(socket){
 
   socket.on('chat message', function(msg){
     msg.id = store.getState().chats.length;
-    io.emit('new message', msg);
     store.dispatch(addChat({
       id: msg.id,
       name: msg.name,
       message: msg.message
     }));
+    io.emit('new message', msg);
   });
 });
 
