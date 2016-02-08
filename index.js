@@ -132,7 +132,7 @@ io.on('connection', function(socket){
       store.dispatch(addChat({
         id: store.getState().chats.length,
         name: 'system',
-        message: userName + ' has left the chat'
+        message: userName + ' left the chat'
       }));
     }
   });

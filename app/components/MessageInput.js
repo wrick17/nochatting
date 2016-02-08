@@ -66,7 +66,6 @@ export default class MessageInput extends React.Component {
     let iconStyles = {
       margin: '13px 0 0'
     }
-    console.log('render');
     return (
       <form className="message-input" onSubmit={this.submitMessage} >
         { this.state.emojiPickerOpen ? <EmojiPicker onSelect={this.setEmoji} /> : null}
